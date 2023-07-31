@@ -31,11 +31,18 @@ app.use(function(req, res, next) {
 });
 
 let userUrl;
+let groupUrl;
 
 if (process.env.NODE_ENV === 'production') {
   userUrl = "https://luna-user-service-4883dabf907c.herokuapp.com";
 } else {
   userUrl = "http://localhost:3002";
+}
+
+if (process.env.NODE_ENV === 'production') {
+  groupUrl = "https://luna-group-service-0ebbd0219a30.herokuapp.com";
+} else {
+  groupUrl = "http://localhost:3003";
 }
 
 app.use("/api/ticket", proxy("http://localhost:3001", {
@@ -50,7 +57,7 @@ app.use("/api/user", proxy(userUrl, {
   },
 }));
 
-app.use("/api/group", proxy("http://localhost:3003", {
+app.use("/api/group", proxy(groupUrl, {
   proxyReqPathResolver: (req) => {
     return `/api/group${req.url}`;
   },

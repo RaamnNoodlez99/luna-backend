@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "cd src && nodemon server.ts",
+    "start": "cd src && node server.ts",
     "build": "tsc -p .",
     "test": "nyc mocha -r ts-node/register --timeout 500000000 test/**/*.spec.ts"
   },

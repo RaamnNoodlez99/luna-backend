@@ -30,6 +30,13 @@ app.use(function(req, res, next) {
   next();
 });
 
+let userUrl;
+
+if (process.env.NODE_ENV === 'production') {
+  userUrl = "https://luna-user-service-4883dabf907c.herokuapp.com";
+} else {
+  userUrl = "http://localhost:3002";
+}
 
 app.use("/api/ticket", proxy("http://localhost:3001", {
   proxyReqPathResolver: (req) => {
@@ -37,7 +44,7 @@ app.use("/api/ticket", proxy("http://localhost:3001", {
   },
 }));
 
-app.use("/api/user", proxy("http://localhost:3002", {
+app.use("/api/user", proxy(userUrl, {
   proxyReqPathResolver: (req) => {
     return `/api/user${req.url}`;
   },

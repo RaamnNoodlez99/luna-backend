@@ -3,7 +3,6 @@ import cors from "cors";
 import dotenv from "dotenv";
 // import { createProxyMiddleware } from 'http-proxy-middleware';
 import proxy = require("express-http-proxy");
-import { jwtVerify } from "../../backend/jwtVerify/jwtVerify";
 
 dotenv.config();
 //test
